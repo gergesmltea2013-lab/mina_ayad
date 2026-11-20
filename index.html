@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>14218233
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>كابتن مينا عياد - توصيل سريع بالموتوسيكل</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy-950: #060d1f;
+      --navy-900: #0b1736;
+      --navy-800: #11224d;
+      --navy-700: #183068;
+      --gold-400: #f6c453;
+      --gold-500: #e5a928;
+      --gold-100: #fff5d6;
+      --teal-400: #2dd4bf;
+      --teal-500: #14b8a6;
+      --green-500: #22c55e;
+      --red-500: #ef4444;
+      --slate-50: #f8fafc;
+      --slate-100: #f1f5f9;
+      --slate-200: #e2e8f0;
+      --slate-400: #94a3b8;
+      --slate-600: #475569;
+      --slate-800: #1e293b;
+      --white: #ffffff;
+      --shadow-sm: 0 2px 8px rgba(6, 13, 31, 0.06);
+      --shadow-md: 0 8px 24px rgba(6, 13, 31, 0.12);
+      --shadow-lg: 0 16px 36px rgba(6, 13, 31, 0.22);
+      --radius-lg: 20px;
+      --radius-md: 14px;
+      --radius-sm: 10px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: 'Cairo', sans-serif;
+      background: linear-gradient(160deg, var(--navy-950) 0%, var(--navy-800) 55%, #0e2942 100%);
+      min-height: 100vh;
+      color: var(--slate-800);
+      display: flex;
+      justify-content: center;
+      padding: 0;
+    }
+
+    .app-shell {
+      width: 100%;
+      max-width: 480px;
+      min-height: 100vh;
+      background: var(--slate-50);
+      position: relative;
+      box-shadow: var(--shadow-lg);
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    .top-header {
+      background: linear-gradient(135deg, var(--navy-950) 0%, var(--navy-800) 75%, var(--navy-700) 100%);
+      color: var(--white);
+      padding: 20px 18px 24px;
+      border-bottom-left-radius: 26px;
+      border-bottom-right-radius: 26px;
+      position: relative;
+      box-shadow: var(--shadow-md);
+    }
+
+    .top-header::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 12%;
+      right: 12%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold-400), var(--teal-400), transparent);
+      opacity: 0.75;
+    }
+
+    .brand-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .brand-identity {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .moto-badge {
+      width: 54px;
+      height: 54px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, rgba(246, 196, 83, 0.2), rgba(45, 212, 191, 0.16));
+      border: 1.5px solid rgba(246, 196, 83, 0.55);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      flex-shrink: 0;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+    }
+
+    .brand-title {
+      font-size: 19px;
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1.25;
+    }
+
+    .brand-title span {
+      color: var(--gold-400);
+    }
+
+    .brand-subtitle {
+      font-size: 12px;
+      color: #cbd5e1;
+      margin-top: 2px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 11px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--white);
+      white-space: nowrap;
+    }
+
+    .status-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--green-500);
+      box-shadow: 0 0 8px var(--green-500);
+    }
+
+    .status-pill.busy .status-dot {
+      background: var(--red-500);
+      box-shadow: 0 0 8px var(--red-500);
+    }
+
+    .welcome-banner {
+      margin-top: 14px;
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(246, 196, 83, 0.28);
+      border-radius: var(--radius-md);
+      padding: 10px 13px;
+      font-size: 12.5px;
+      color: #f1f5f9;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .welcome-banner strong {
+      color: var(--gold-400);
+    }
+
+    .nav-tabs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      padding: 14px 16px 6px;
+    }
+
+    .nav-tab {
+      border: 1.5px solid var(--slate-200);
+      background: var(--white);
+      color: var(--slate-600);
+      font-family: 'Cairo', sans-serif;
+      font-size: 14px;
+      font-weight: 800;
+      padding: 11px 12px;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: none;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .nav-tab.active {
+      background: var(--navy-900);
+      color: var(--white);
+      border-color: var(--navy-900);
+      box-shadow: 0 6px 16px rgba(11, 23, 54, 0.22);
+    }
+
+    .nav-tab.active .tab-accent {
+      color: var(--gold-400);
+    }
+
+    .content-area {
+      padding: 10px 16px 28px;
+      flex: 1;
+    }
+
+    .view-section {
+      display: none;
+      animation: none;
+    }
+
+    .view-section.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 16px;
+      margin-bottom: 14px;
+      border: 1px solid var(--slate-200);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .card-title {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--navy-900);
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .service-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .service-btn {
+      border: 1.5px solid var(--slate-200);
+      background: var(--slate-50);
+      border-radius: var(--radius-md);
+      padding: 12px 10px;
+      font-family: 'Cairo', sans-serif;
+      cursor: pointer;
+      text-align: right;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      transition: none;
+    }
+
+    .service-btn .s-icon {
+      font-size: 22px;
+    }
+
+    .service-btn .s-name {
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--navy-900);
+    }
+
+    .service-btn .s-desc {
+      font-size: 11px;
+      color: var(--slate-600);
+    }
+
+    .service-btn.selected {
+      background: linear-gradient(135deg, rgba(11, 23, 54, 0.04), rgba(45, 212, 191, 0.12));
+      border-color: var(--navy-800);
+      box-shadow: 0 4px 12px rgba(11, 23, 54, 0.1);
+    }
+
+    .field-group {
+      margin-bottom: 12px;
+    }
+
+    .field-label {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--navy-900);
+      margin-bottom: 6px;
+    }
+
+    .input-control, .textarea-control {
+      width: 100%;
+      border: 1.5px solid var(--slate-200);
+      border-radius: var(--radius-sm);
+      padding: 11px 12px;
+      font-family: 'Cairo', sans-serif;
+      font-size: 13.5px;
+      color: var(--slate-800);
+      background: var(--white);
+      transition: none;
+    }
+
+    .input-control:focus, .textarea-control:focus {
+      outline: none;
+      border-color: var(--navy-800);
+      box-shadow: 0 0 0 3px rgba(17, 34, 77, 0.08);
+    }
+
+    .textarea-control {
+      min-height: 76px;
+      resize: vertical;
+    }
+
+    .gps-btn {
+      background: rgba(20, 184, 166, 0.12);
+      color: #0f766e;
+      border: 1px solid rgba(20, 184, 166, 0.4);
+      border-radius: 8px;
+      padding: 4px 9px;
+      font-family: 'Cairo', sans-serif;
+      font-size: 11px;
+      font-weight: 800;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .gps-btn:hover {
+      background: rgba(20, 184, 166, 0.22);
+    }
+
+    .gps-status {
+      font-size: 11.5px;
+      color: #0f766e;
+      margin-top: 5px;
+      font-weight: 700;
+      word-break: break-all;
+    }
+
+    .agree-box {
+      background: var(--gold-100);
+      border: 1px solid rgba(229, 169, 40, 0.45);
+      border-radius: var(--radius-sm);
+      padding: 10px 12px;
+      font-size: 12px;
+      color: #785207;
+      font-weight: 700;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .primary-btn {
+      width: 100%;
+      background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+      color: var(--white);
+      border: none;
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+      font-family: 'Cairo', sans-serif;
+      font-size: 15px;
+      font-weight: 900;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 0 8px 20px rgba(22, 163, 74, 0.28);
+      transition: none;
+    }
+
+    .primary-btn:active {
+      transform: scale(0.985);
+    }
+
+    .navy-btn {
+      width: 100%;
+      background: linear-gradient(135deg, var(--navy-900) 0%, var(--navy-700) 100%);
+      color: var(--white);
+      border: none;
+      border-radius: var(--radius-md);
+      padding: 12px 14px;
+      font-family: 'Cairo', sans-serif;
+      font-size: 14px;
+      font-weight: 800;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .secondary-btn {
+      background: var(--slate-100);
+      color: var(--navy-900);
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-sm);
+      padding: 9px 12px;
+      font-family: 'Cairo', sans-serif;
+      font-size: 12.5px;
+      font-weight: 800;
+      cursor: pointer;
+      display: inline-flex;
+      align
