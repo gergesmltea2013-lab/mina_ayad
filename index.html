@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+<head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>كابتن مينا عياد - توصيل سريع بالموتوسيكل</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
   <style>
     :root {
       --navy-950: #060d1f;
@@ -43,7 +44,7 @@
 
     body {
       font-family: 'Cairo', sans-serif;
-      background: linear-gradient(160deg, var(--navy-950) 0%, var(--navy-800) 55%, #0e2942 100%);
+      background: linear-gradient(160deg, var(--navy-950) 0%, var(--navy-800) 55%, #0c2942 100%);
       min-height: 100vh;
       color: var(--slate-800);
       display: flex;
@@ -79,19 +80,19 @@
       bottom: 0;
       left: 12%;
       right: 12%;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, var(--gold-400), var(--teal-400), transparent);
-      opacity: 0.75;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--gold-400), transparent);
+      border-radius: 999px;
     }
 
-    .brand-row {
+    .header-row {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 12px;
     }
 
-    .brand-identity {
+    .brand-box {
       display: flex;
       align-items: center;
       gap: 12px;
@@ -101,34 +102,27 @@
       width: 54px;
       height: 54px;
       border-radius: 16px;
-      background: linear-gradient(135deg, rgba(246, 196, 83, 0.2), rgba(45, 212, 191, 0.16));
-      border: 1.5px solid rgba(246, 196, 83, 0.55);
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      background: linear-gradient(145deg, var(--gold-400), var(--gold-500));
+      color: var(--navy-950);
+      display: grid;
+      place-items: center;
       font-size: 28px;
+      box-shadow: 0 6px 18px rgba(246, 196, 83, 0.35);
       flex-shrink: 0;
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
     }
 
     .brand-title {
       font-size: 19px;
       font-weight: 900;
-      color: var(--white);
       line-height: 1.25;
+      color: var(--white);
     }
 
-    .brand-title span {
-      color: var(--gold-400);
-    }
-
-    .brand-subtitle {
+    .brand-sub {
       font-size: 12px;
-      color: #cbd5e1;
+      color: var(--gold-100);
+      opacity: 0.9;
       margin-top: 2px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
     }
 
     .status-pill {
@@ -137,128 +131,87 @@
       gap: 6px;
       padding: 6px 11px;
       border-radius: 999px;
-      font-size: 12px;
-      font-weight: 800;
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      background: rgba(255, 255, 255, 0.08);
-      color: var(--white);
+      font-size: 11.5px;
+      font-weight: 700;
+      background: rgba(34, 197, 94, 0.16);
+      color: #86efac;
+      border: 1px solid rgba(34, 197, 94, 0.35);
       white-space: nowrap;
     }
 
+    .status-pill.busy {
+      background: rgba(239, 68, 68, 0.18);
+      color: #fca5a5;
+      border-color: rgba(239, 68, 68, 0.4);
+    }
+
     .status-dot {
-      width: 9px;
-      height: 9px;
+      width: 8px;
+      height: 8px;
       border-radius: 50%;
       background: var(--green-500);
-      box-shadow: 0 0 8px var(--green-500);
     }
 
     .status-pill.busy .status-dot {
       background: var(--red-500);
-      box-shadow: 0 0 8px var(--red-500);
     }
 
-    .welcome-banner {
-      margin-top: 14px;
-      background: rgba(255, 255, 255, 0.07);
-      border: 1px solid rgba(246, 196, 83, 0.28);
-      border-radius: var(--radius-md);
-      padding: 10px 13px;
-      font-size: 12.5px;
-      color: #f1f5f9;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 8px;
-    }
-
-    .welcome-banner strong {
-      color: var(--gold-400);
-    }
-
-    .nav-tabs {
+    .mode-tabs {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      padding: 14px 16px 6px;
+      gap: 8px;
+      margin: 14px 16px 0;
+      background: var(--slate-200);
+      padding: 5px;
+      border-radius: 14px;
     }
 
-    .nav-tab {
-      border: 1.5px solid var(--slate-200);
-      background: var(--white);
-      color: var(--slate-600);
+    .mode-tab {
+      border: none;
+      background: transparent;
+      padding: 10px 12px;
+      border-radius: 10px;
       font-family: 'Cairo', sans-serif;
-      font-size: 14px;
+      font-size: 13.5px;
       font-weight: 800;
-      padding: 11px 12px;
-      border-radius: var(--radius-md);
+      color: var(--slate-600);
       cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      transition: none;
+      transition: 0.2s ease;
+    }
+
+    .mode-tab.active {
+      background: var(--navy-900);
+      color: var(--gold-400);
       box-shadow: var(--shadow-sm);
     }
 
-    .nav-tab.active {
-      background: var(--navy-900);
-      color: var(--white);
-      border-color: var(--navy-900);
-      box-shadow: 0 6px 16px rgba(11, 23, 54, 0.22);
-    }
-
-    .nav-tab.active .tab-accent {
-      color: var(--gold-400);
-    }
-
     .content-area {
-      padding: 10px 16px 28px;
+      padding: 14px 16px 28px;
       flex: 1;
-    }
-
-    .view-section {
-      display: none;
-      animation: none;
-    }
-
-    .view-section.active {
-      display: block;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(6px); }
-      to { opacity: 1; transform: translateY(0); }
     }
 
     .card {
       background: var(--white);
       border-radius: var(--radius-lg);
       padding: 16px;
-      margin-bottom: 14px;
-      border: 1px solid var(--slate-200);
       box-shadow: var(--shadow-sm);
+      border: 1px solid var(--slate-200);
+      margin-bottom: 14px;
     }
 
-    .card-header {
+    .section-label {
+      font-size: 13.5px;
+      font-weight: 800;
+      color: var(--navy-900);
+      margin-bottom: 10px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 12px;
-    }
-
-    .card-title {
-      font-size: 15px;
-      font-weight: 800;
-      color: var(--navy-900);
-      display: flex;
-      align-items: center;
-      gap: 7px;
     }
 
     .service-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(2, 1fr);
       gap: 10px;
     }
 
@@ -267,34 +220,36 @@
       background: var(--slate-50);
       border-radius: var(--radius-md);
       padding: 12px 10px;
-      font-family: 'Cairo', sans-serif;
-      cursor: pointer;
       text-align: right;
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-      transition: none;
-    }
-
-    .service-btn .s-icon {
-      font-size: 22px;
-    }
-
-    .service-btn .s-name {
-      font-size: 13px;
-      font-weight: 800;
-      color: var(--navy-900);
-    }
-
-    .service-btn .s-desc {
-      font-size: 11px;
-      color: var(--slate-600);
+      cursor: pointer;
+      transition: 0.2s ease;
+      font-family: 'Cairo', sans-serif;
     }
 
     .service-btn.selected {
-      background: linear-gradient(135deg, rgba(11, 23, 54, 0.04), rgba(45, 212, 191, 0.12));
       border-color: var(--navy-800);
-      box-shadow: 0 4px 12px rgba(11, 23, 54, 0.1);
+      background: var(--gold-100);
+      box-shadow: 0 4px 12px rgba(229, 169, 40, 0.2);
+    }
+
+    .service-emoji {
+      font-size: 20px;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .service-name {
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--navy-950);
+      display: block;
+    }
+
+    .service-desc {
+      font-size: 11px;
+      color: var(--slate-600);
+      display: block;
+      margin-top: 2px;
     }
 
     .field-group {
@@ -302,128 +257,138 @@
     }
 
     .field-label {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      display: block;
       font-size: 12.5px;
       font-weight: 700;
-      color: var(--navy-900);
-      margin-bottom: 6px;
+      color: var(--slate-800);
+      margin-bottom: 5px;
     }
 
-    .input-control, .textarea-control {
+    .input-control, .textarea-control, .select-control {
       width: 100%;
       border: 1.5px solid var(--slate-200);
       border-radius: var(--radius-sm);
-      padding: 11px 12px;
+      padding: 10px 12px;
       font-family: 'Cairo', sans-serif;
       font-size: 13.5px;
-      color: var(--slate-800);
+      color: var(--navy-950);
       background: var(--white);
-      transition: none;
     }
 
-    .input-control:focus, .textarea-control:focus {
+    .input-control:focus, .textarea-control:focus, .select-control:focus {
       outline: none;
-      border-color: var(--navy-800);
-      box-shadow: 0 0 0 3px rgba(17, 34, 77, 0.08);
+      border-color: var(--navy-700);
     }
 
-    .textarea-control {
-      min-height: 76px;
-      resize: vertical;
-    }
-
-    .gps-btn {
-      background: rgba(20, 184, 166, 0.12);
-      color: #0f766e;
-      border: 1px solid rgba(20, 184, 166, 0.4);
-      border-radius: 8px;
-      padding: 4px 9px;
-      font-family: 'Cairo', sans-serif;
-      font-size: 11px;
-      font-weight: 800;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-    }
-
-    .gps-btn:hover {
-      background: rgba(20, 184, 166, 0.22);
-    }
-
-    .gps-status {
-      font-size: 11.5px;
-      color: #0f766e;
-      margin-top: 5px;
-      font-weight: 700;
-      word-break: break-all;
-    }
-
-    .agree-box {
-      background: var(--gold-100);
-      border: 1px solid rgba(229, 169, 40, 0.45);
-      border-radius: var(--radius-sm);
-      padding: 10px 12px;
-      font-size: 12px;
-      color: #785207;
-      font-weight: 700;
-      margin-bottom: 14px;
+    .gps-row {
       display: flex;
-      align-items: center;
       gap: 8px;
+      margin-top: 6px;
+    }
+
+    .mini-btn {
+      border: 1px solid var(--slate-200);
+      background: var(--slate-100);
+      color: var(--navy-900);
+      border-radius: 9px;
+      padding: 7px 10px;
+      font-family: 'Cairo', sans-serif;
+      font-size: 11.5px;
+      font-weight: 700;
+      cursor: pointer;
     }
 
     .primary-btn {
       width: 100%;
-      background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
-      color: var(--white);
       border: none;
       border-radius: var(--radius-md);
-      padding: 14px 16px;
+      padding: 13px 16px;
       font-family: 'Cairo', sans-serif;
       font-size: 15px;
-      font-weight: 900;
+      font-weight: 800;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
-      box-shadow: 0 8px 20px rgba(22, 163, 74, 0.28);
-      transition: none;
+      transition: 0.2s ease;
     }
 
-    .primary-btn:active {
-      transform: scale(0.985);
+    .whatsapp-btn {
+      background: linear-gradient(135deg, #16a34a, #15803d);
+      color: var(--white);
+      box-shadow: 0 6px 18px rgba(22, 163, 74, 0.3);
     }
 
     .navy-btn {
-      width: 100%;
-      background: linear-gradient(135deg, var(--navy-900) 0%, var(--navy-700) 100%);
-      color: var(--white);
-      border: none;
-      border-radius: var(--radius-md);
-      padding: 12px 14px;
-      font-family: 'Cairo', sans-serif;
-      font-size: 14px;
-      font-weight: 800;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
+      background: linear-gradient(135deg, var(--navy-900), var(--navy-700));
+      color: var(--gold-400);
     }
 
-    .secondary-btn {
-      background: var(--slate-100);
-      color: var(--navy-900);
+    .order-item {
       border: 1px solid var(--slate-200);
-      border-radius: var(--radius-sm);
-      padding: 9px 12px;
-      font-family: 'Cairo', sans-serif;
+      border-radius: var(--radius-md);
+      padding: 12px;
+      margin-bottom: 10px;
+      background: var(--slate-50);
+    }
+
+    .order-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       font-size: 12.5px;
       font-weight: 800;
-      cursor: pointer;
-      display: inline-flex;
-      align
+      color: var(--navy-950);
+      margin-bottom: 6px;
+    }
+
+    .order-meta {
+      font-size: 12px;
+      color: var(--slate-600);
+      line-height: 1.6;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .hint-text {
+      font-size: 11.5px;
+      color: var(--slate-600);
+      margin-top: 6px;
+    }
+
+    .alert-box {
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      font-size: 12.5px;
+      font-weight: 700;
+      margin-top: 10px;
+      background: #fef2f2;
+      color: #b91c1c;
+      border: 1px solid #fecaca;
+    }
+  </style>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="top-header">
+      <div class="header-row">
+        <div class="brand-box">
+          <div class="moto-badge">🛵</div>
+          <div>
+            <h1 class="brand-title">كابتن مينا عياد</h1>
+            <p class="brand-sub">توصيل سريع بالموتوسيكل • طرود ومشاوير</p>
+          </div>
+        </div>
+        <div id="headerStatusBadge" class="status-pill">
+          <span class="status-dot"></span>
+          <span id="headerStatusText">متاح الآن</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="mode-tabs">
+      <button id="tabClient" class="mode-tab active" type="button" onclick="switchView('client')">طلب توصيل</button>
+      <button id="tabAdmin" class="mode-tab" type="button" onclick="switchView('admin')">لوحة الكابتن</
