@@ -250,3 +250,460 @@
       color: var(--slate-600);
       display: block;
       margin-top: 2px;
+    }
+
+    .field-group {
+      margin-bottom: 12px;
+    }
+
+    .field-label {
+      display: block;
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--slate-800);
+      margin-bottom: 5px;
+    }
+
+    .input-control, .textarea-control, .select-control {
+      width: 100%;
+      border: 1.5px solid var(--slate-200);
+      border-radius: var(--radius-sm);
+      padding: 10px 12px;
+      font-family: 'Cairo', sans-serif;
+      font-size: 13.5px;
+      color: var(--navy-950);
+      background: var(--white);
+    }
+
+    .input-control:focus, .textarea-control:focus, .select-control:focus {
+      outline: none;
+      border-color: var(--navy-700);
+    }
+
+    .gps-row {
+      display: flex;
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    .mini-btn {
+      border: 1px solid var(--slate-200);
+      background: var(--slate-100);
+      color: var(--navy-900);
+      border-radius: 9px;
+      padding: 7px 10px;
+      font-family: 'Cairo', sans-serif;
+      font-size: 11.5px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .primary-btn {
+      width: 100%;
+      border: none;
+      border-radius: var(--radius-md);
+      padding: 13px 16px;
+      font-family: 'Cairo', sans-serif;
+      font-size: 15px;
+      font-weight: 800;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: 0.2s ease;
+    }
+
+    .whatsapp-btn {
+      background: linear-gradient(135deg, #16a34a, #15803d);
+      color: var(--white);
+      box-shadow: 0 6px 18px rgba(22, 163, 74, 0.3);
+    }
+
+    .navy-btn {
+      background: linear-gradient(135deg, var(--navy-900), var(--navy-700));
+      color: var(--gold-400);
+    }
+
+    .order-item {
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-md);
+      padding: 12px;
+      margin-bottom: 10px;
+      background: var(--slate-50);
+    }
+
+    .order-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12.5px;
+      font-weight: 800;
+      color: var(--navy-950);
+      margin-bottom: 6px;
+    }
+
+    .order-meta {
+      font-size: 12px;
+      color: var(--slate-600);
+      line-height: 1.6;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .hint-text {
+      font-size: 11.5px;
+      color: var(--slate-600);
+      margin-top: 6px;
+    }
+
+    .alert-box {
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      font-size: 12.5px;
+      font-weight: 700;
+      margin-top: 10px;
+      background: #fef2f2;
+      color: #b91c1c;
+      border: 1px solid #fecaca;
+    }
+  </style>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="top-header">
+      <div class="header-row">
+        <div class="brand-box">
+          <div class="moto-badge">🛵</div>
+          <div>
+            <h1 class="brand-title">كابتن مينا عياد</h1>
+            <p class="brand-sub">توصيل سريع بالموتوسيكل • طرود ومشاوير</p>
+          </div>
+        </div>
+        <div id="headerStatusBadge" class="status-pill">
+          <span class="status-dot"></span>
+          <span id="headerStatusText">متاح الآن</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="mode-tabs">
+      <button id="tabClient" class="mode-tab active" type="button" onclick="switchView('client')">طلب توصيل</button>
+      <button id="tabAdmin" class="mode-tab" type="button" onclick="switchView('admin')">لوحة الكابتن</button>
+    </div>
+
+    <main class="content-area">
+      <!-- واجهة العميل -->
+      <section id="clientView">
+        <div class="card">
+          <div class="section-label">اختر نوع الخدمة</div>
+          <div class="service-grid">
+            <button type="button" class="service-btn selected" data-service="توصيل خضار" onclick="selectService(this)">
+              <span class="service-emoji">🥦</span>
+              <span class="service-name">توصيل خضار</span>
+              <span class="service-desc">خضار وطلبات السوق</span>
+            </button>
+            <button type="button" class="service-btn" data-service="مشوار" onclick="selectService(this)">
+              <span class="service-emoji">🛵</span>
+              <span class="service-name">مشوار</span>
+              <span class="service-desc">مشوار سريع داخل البلد</span>
+            </button>
+            <button type="button" class="service-btn" data-service="توصيل أوراق" onclick="selectService(this)">
+              <span class="service-emoji">📄</span>
+              <span class="service-name">أوراق</span>
+              <span class="service-desc">مستندات، فواتير، ورق مهم</span>
+            </button>
+            <button type="button" class="service-btn" data-service="توصيل علاج" onclick="selectService(this)">
+              <span class="service-emoji">💊</span>
+              <span class="service-name">علاج</span>
+              <span class="service-desc">أدوية ومستلزمات طبية</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="section-label">بيانات التوصيل</div>
+
+          <div class="field-group">
+            <label class="field-label" for="clientName">اسم العميل</label>
+            <input id="clientName" class="input-control" type="text" placeholder="اكتب اسمك" />
+          </div>
+
+          <div class="field-group">
+            <label class="field-label" for="clientPhone">رقم هاتف العميل (اختياري)</label>
+            <input id="clientPhone" class="input-control" type="tel" placeholder="01xxxxxxxxx" />
+          </div>
+
+          <div class="field-group">
+            <label class="field-label" for="pickupAddress">نقطة الاستلام</label>
+            <input id="pickupAddress" class="input-control" type="text" placeholder="من أين يتم الاستلام؟" />
+            <div class="gps-row">
+              <button type="button" class="mini-btn" onclick="fillCurrentLocation('pickupAddress')">📍 تحديد موقع الاستلام GPS</button>
+            </div>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label" for="dropoffAddress">نقطة التسليم</label>
+            <input id="dropoffAddress" class="input-control" type="text" placeholder="إلى أين يتم التوصيل؟" />
+            <div class="gps-row">
+              <button type="button" class="mini-btn" onclick="fillCurrentLocation('dropoffAddress')">📍 تحديد موقع التسليم GPS</button>
+            </div>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label" for="orderNotes">تفاصيل الطلب أو ملاحظات</label>
+            <textarea id="orderNotes" class="textarea-control" rows="2" placeholder="اكتب تفاصيل الخضار أو المشوار أو الأوراق أو العلاج..."></textarea>
+          </div>
+
+          <button type="button" class="primary-btn whatsapp-btn" onclick="sendWhatsAppOrder()">
+            <span>إرسال الطلب عبر واتساب</span>
+          </button>
+          <p id="gpsStatusText" class="hint-text"></p>
+        </div>
+      </section>
+
+      <!-- واجهة الكابتن -->
+      <section id="adminView" class="hidden">
+        <div id="loginCard" class="card">
+          <div class="section-label">دخول لوحة الكابتن</div>
+          <div class="field-group">
+            <label class="field-label" for="adminPin">رمز الدخول السري</label>
+            <input id="adminPin" class="input-control" type="password" inputmode="numeric" placeholder="أدخل الرمز السري" />
+          </div>
+          <button type="button" class="primary-btn navy-btn" onclick="unlockAdmin()">فتح اللوحة</button>
+          <div id="loginError" class="alert-box hidden">رمز الدخول غير صحيح</div>
+        </div>
+
+        <div id="adminPanel" class="hidden">
+          <div class="card">
+            <div class="section-label">إعدادات كابتن مينا عياد</div>
+
+            <div class="field-group">
+              <label class="field-label" for="captainWhatsapp">رقم واتساب الكابتن (بالكود الدولي)</label>
+              <input id="captainWhatsapp" class="input-control" type="tel" placeholder="مثال: 2010xxxxxxxx" />
+            </div>
+
+            <div class="field-group">
+              <label class="field-label" for="captainStatus">حالة الكابتن الحالية</label>
+              <select id="captainStatus" class="select-control">
+                <option value="available">متاح الآن لاستقبال الطلبات</option>
+                <option value="busy">مشغول بتوصيل طلب حالي</option>
+              </select>
+            </div>
+
+            <button type="button" class="primary-btn navy-btn" onclick="saveCaptainSettings()">حفظ الإعدادات</button>
+            <p id="saveMessage" class="hint-text"></p>
+          </div>
+
+          <div class="card">
+            <div class="section-label">
+              <span>الطلبات المرسلة</span>
+              <button type="button" class="mini-btn" onclick="clearOrders()">مسح السجل</button>
+            </div>
+            <div id="ordersList"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const STORAGE_KEY = 'mina_ayad_captain_app_v1';
+    const ADMIN_PIN = '1234';
+
+    const defaultState = {
+      whatsapp: '201000000000',
+      status: 'available',
+      orders: []
+    };
+
+    let state = loadState();
+    let selectedService = 'توصيل خضار';
+
+    function loadState() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) return { ...defaultState };
+        const parsed = JSON.parse(raw);
+        return {
+          whatsapp: parsed.whatsapp || defaultState.whatsapp,
+          status: parsed.status === 'busy' ? 'busy' : 'available',
+          orders: Array.isArray(parsed.orders) ? parsed.orders : []
+        };
+      } catch (e) {
+        return { ...defaultState };
+      }
+    }
+
+    function saveState() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      renderHeaderStatus();
+      renderOrders();
+    }
+
+    function renderHeaderStatus() {
+      const badge = document.getElementById('headerStatusBadge');
+      const text = document.getElementById('headerStatusText');
+      if (state.status === 'busy') {
+        badge.classList.add('busy');
+        text.textContent = 'مشغول حالياً';
+      } else {
+        badge.classList.remove('busy');
+        text.textContent = 'متاح الآن';
+      }
+    }
+
+    function switchView(view) {
+      const clientView = document.getElementById('clientView');
+      const adminView = document.getElementById('adminView');
+      const tabClient = document.getElementById('tabClient');
+      const tabAdmin = document.getElementById('tabAdmin');
+
+      if (view === 'admin') {
+        clientView.classList.add('hidden');
+        adminView.classList.remove('hidden');
+        tabAdmin.classList.add('active');
+        tabClient.classList.remove('active');
+      } else {
+        adminView.classList.add('hidden');
+        clientView.classList.remove('hidden');
+        tabClient.classList.add('active');
+        tabAdmin.classList.remove('active');
+      }
+    }
+
+    function selectService(btn) {
+      document.querySelectorAll('.service-btn').forEach(el => el.classList.remove('selected'));
+      btn.classList.add('selected');
+      selectedService = btn.getAttribute('data-service') || 'توصيل خضار';
+    }
+
+    function fillCurrentLocation(targetId) {
+      const statusEl = document.getElementById('gpsStatusText');
+      if (!navigator.geolocation) {
+        statusEl.textContent = 'المتصفح لا يدعم تحديد الموقع الجغرافي.';
+        return;
+      }
+      statusEl.textContent = 'جاري تحديد الموقع...';
+      navigator.geolocation.getCurrentPosition(
+        pos => {
+          const lat = pos.coords.latitude.toFixed(6);
+          const lng = pos.coords.longitude.toFixed(6);
+          document.getElementById(targetId).value = `https://maps.google.com/?q=${lat},${lng}`;
+          statusEl.textContent = 'تم إدراج رابط الموقع الجغرافي بنجاح.';
+        },
+        () => {
+          statusEl.textContent = 'تعذر الوصول إلى GPS، يرجى التأكد من تفعيل الموقع أو كتابة العنوان يدوياً.';
+        }
+      );
+    }
+
+    function sendWhatsAppOrder() {
+      const name = document.getElementById('clientName').value.trim();
+      const phone = document.getElementById('clientPhone').value.trim();
+      const pickup = document.getElementById('pickupAddress').value.trim();
+      const dropoff = document.getElementById('dropoffAddress').value.trim();
+      const notes = document.getElementById('orderNotes').value.trim();
+
+      if (!pickup || !dropoff) {
+        alert('يرجى إدخال نقطة الاستلام ونقطة التسليم.');
+        return;
+      }
+
+      const cleanPhone = (state.whatsapp || '').replace(/[^0-9]/g, '');
+      if (!cleanPhone || cleanPhone.length < 8) {
+        alert('يرجى ضبط رقم واتساب الكابتن أولاً من لوحة الكابتن.');
+        return;
+      }
+
+      const orderRecord = {
+        id: 'ORD-' + Date.now().toString().slice(-5),
+        service: selectedService,
+        name: name || 'عميل',
+        phone: phone || 'غير محدد',
+        pickup,
+        dropoff,
+        notes: notes || '-',
+        time: new Date().toLocaleString('ar-EG')
+      };
+
+      state.orders.unshift(orderRecord);
+      saveState();
+
+      const msg =
+        `🛵 *طلب توصيل - كابتن مينا عياد*\n` +
+        `رقم الطلب: ${orderRecord.id}\n` +
+        `الخدمة: ${orderRecord.service}\n` +
+        `الاسم: ${orderRecord.name}\n` +
+        `الهاتف: ${orderRecord.phone}\n` +
+        `الاستلام: ${orderRecord.pickup}\n` +
+        `التسليم: ${orderRecord.dropoff}\n` +
+        `ملاحظات: ${orderRecord.notes}`;
+
+      const url = `https://wa.me/${cleanPhone}?text=${encodeURIComponent(msg)}`;
+      window.open(url, '_blank');
+    }
+
+    function unlockAdmin() {
+      const pinInput = document.getElementById('adminPin').value.trim();
+      const errBox = document.getElementById('loginError');
+      if (pinInput === ADMIN_PIN) {
+        errBox.classList.add('hidden');
+        document.getElementById('loginCard').classList.add('hidden');
+        document.getElementById('adminPanel').classList.remove('hidden');
+        document.getElementById('captainWhatsapp').value = state.whatsapp;
+        document.getElementById('captainStatus').value = state.status;
+        renderOrders();
+      } else {
+        errBox.classList.remove('hidden');
+      }
+    }
+
+    function saveCaptainSettings() {
+      const wa = document.getElementById('captainWhatsapp').value.trim().replace(/[^0-9]/g, '');
+      const st = document.getElementById('captainStatus').value;
+      if (wa) {
+        state.whatsapp = wa;
+      }
+      state.status = st === 'busy' ? 'busy' : 'available';
+      saveState();
+      document.getElementById('saveMessage').textContent = 'تم حفظ الإعدادات بنجاح.';
+    }
+
+    function renderOrders() {
+      const container = document.getElementById('ordersList');
+      if (!container) return;
+      if (!state.orders.length) {
+        container.innerHTML = '<p class="hint-text">لا توجد طلبات مسجلة حالياً.</p>';
+        return;
+      }
+      container.innerHTML = state.orders
+        .map(o => `
+          <div class="order-item">
+            <div class="order-top">
+              <span>${o.id} • ${o.service}</span>
+              <span>${o.time}</span>
+            </div>
+            <div class="order-meta">
+              العميل: ${o.name} (${o.phone})<br/>
+              من: ${o.pickup}<br/>
+              إلى: ${o.dropoff}<br/>
+              ملاحظات: ${o.notes}
+            </div>
+          </div>
+        `)
+        .join('');
+    }
+
+    function clearOrders() {
+      state.orders = [];
+      saveState();
+    }
+
+    renderHeaderStatus();
+    renderOrders();
+  </script>
+</body>
+</html>
